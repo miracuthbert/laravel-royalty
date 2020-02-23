@@ -1,0 +1,61 @@
+{
+    "name": "miracuthbert/laravel-royalty",
+    "description": "A user points package for Laravel that can be used to give rewards, loyalty or experience points with real time support",
+    "keywords": [
+        "miracuthbert",
+        "laravel",
+        "royalty",
+        "loyalty-points",
+        "user-points",
+        "user-experience-points",
+        "user-rewards-points"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cuthbert Mirambo",
+            "email": "miracuthbert@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1.3",
+        "illuminate/console": "5.8.*|^6.0",
+        "illuminate/database": "5.8.*|^6.0",
+        "illuminate/events": "5.8.*|^6.0",
+        "illuminate/http": "5.8.*|^6.0",
+        "illuminate/support": "5.8.*|^6.0",
+        "kalnoy/nestedset": "^5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0",
+        "orchestra/testbench": "^3.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Miracuthbert\\Royalty\\": "src/"
+        },
+        "files": [
+            "src/Helpers/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Miracuthbert\\Royalty\\Tests\\": "tests/"
+        },
+        "classmap": [
+            "tests/database/seeds"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Miracuthbert\\Royalty\\RoyaltyServiceProvider"
+            ],
+            "aliases": {
+                "Royalty": "Miracuthbert\\Royalty\\Facades\\Royalty"
+            }
+        }
+    }
+}
