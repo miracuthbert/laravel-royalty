@@ -38,4 +38,15 @@ class Point extends Model
             $point->key = $key;
         });
     }
+
+    /**
+     * Get users with this point.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users()
+    {
+        return $this->belongsToMany(config('royalty.user.model'))
+            ->withTimestamps();
+    }
 }
