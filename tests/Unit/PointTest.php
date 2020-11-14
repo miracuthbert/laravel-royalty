@@ -2,7 +2,10 @@
 
 namespace Miracuthbert\Royalty\Tests\Unit;
 
+use Illuminate\Support\Facades\DB;
 use Miracuthbert\Royalty\Models\Point;
+use Miracuthbert\Royalty\Tests\Models\User;
+use Miracuthbert\Royalty\Tests\Points\Actions\DeleteablePoint;
 use Miracuthbert\Royalty\Tests\Points\Actions\Subscriber;
 use Miracuthbert\Royalty\Tests\TestCase;
 
@@ -46,6 +49,32 @@ class PointTest extends TestCase
         $point = factory(Point::class)->create(['name' => $name, 'key' => 'yellow']);
 
         $this->assertEquals($name, $point->name);
+    }
+
+    /**
+     * Test a point can be deleted.
+     *
+     * @test
+     */
+    public function a_point_can_be_deleted()
+    {
+        $user = factory(User::class)->create();
+
+        $point = new DeleteablePoint();
+
+        $pointModel = $point->getModel()->toArray();
+
+        $this->assertDatabaseHas('points', $pointModel);
+
+        $user->givePoints($point);
+
+        $this->assertCount(1, $point->getModel()->users()->get());
+
+        $point->getModel()->delete();
+
+        $this->assertDeleted('points', $pointModel);
+        $this->assertCount(0, $user->pointsRelation()->where('key', $point->key())->get());
+        $this->assertCount(0, Point::where('key', $point->key())->get());
     }
 
     /**

@@ -26,6 +26,11 @@ class PointTableSeeder extends Seeder
                 'points' => 50,
             ],
             [
+                'name' => 'Deleteable Point',
+                'key' => 'deleteable-point',
+                'points' => 5,
+            ],
+            [
                 'name' => 'Grades',
                 'key' => 'grades',
                 'points' => 0,
@@ -55,16 +60,13 @@ class PointTableSeeder extends Seeder
 
             if (!$exists) {
                 Point::create($point);
-                return;
-            }
-
-            $this->updateOrCreate($point);
-
-            $children = $point['children'] ?? [];
-
-            if (count($children) > 0) {
-                foreach ($children as $child) {
-                    $this->updateOrCreate($child, $exists);
+            } else {
+                $this->updateOrCreate($point);
+                $children = $point['children'] ?? [];
+                if (count($children) > 0) {
+                    foreach ($children as $child) {
+                        $this->updateOrCreate($child, $exists);
+                    }
                 }
             }
         }
