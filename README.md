@@ -42,6 +42,7 @@ php artisan royalty:setup
 ```
 
 > Update the keys in "config/royalty.php" before migrating your database 
+> You can set the model to be used for points.
 
 If you want to reset either `config` or `migrations` use the commands below in your console
 

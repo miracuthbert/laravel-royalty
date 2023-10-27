@@ -2,12 +2,13 @@
 
 namespace Miracuthbert\Royalty\Models;
 
+use App\Models\MongoModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Kalnoy\Nestedset\NodeTrait;
 
-class Point extends Model
+class Point extends Model implements PointContract
 {
     use NodeTrait, SoftDeletes;
 

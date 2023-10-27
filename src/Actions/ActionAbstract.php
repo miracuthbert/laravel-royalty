@@ -20,6 +20,6 @@ abstract class ActionAbstract
      */
     public function getModel()
     {
-        return Point::where('key', $this->key())->first();
+        return config('royalty.point.model')::where('key', $this->key())->first();
     }
 }

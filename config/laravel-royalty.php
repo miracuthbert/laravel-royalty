@@ -35,6 +35,15 @@ return [
 
         /*
          *
+         * Points model.
+         * 
+         * The model to use for points.
+         * 
+         */
+        'model' => \Miracuthbert\Royalty\Models\Point::class,
+
+        /*
+         *
          * Actions Path.
          *
          * The namespace under 'app' to place created points.
