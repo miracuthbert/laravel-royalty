@@ -2,8 +2,8 @@
 
 namespace Miracuthbert\Royalty\Models;
 
-use App\Models\MongoModel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Kalnoy\Nestedset\NodeTrait;
@@ -43,7 +43,7 @@ class Point extends Model implements PointContract
     /**
      * Get users with this point.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function users()
     {
