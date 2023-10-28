@@ -2,14 +2,13 @@
 
 namespace Miracuthbert\Royalty\Events;
 
-use Illuminate\Broadcasting\Channel;
+
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Miracuthbert\Royalty\Models\Point;
+use Miracuthbert\Royalty\Models\PointContract;
 
 class PointsGiven implements ShouldBroadcast
 {
@@ -23,9 +22,9 @@ class PointsGiven implements ShouldBroadcast
     public $user;
 
     /**
-     * The Point instance.
+     * The PointContract instance.
      *
-     * @var \Miracuthbert\Royalty\Models\Point
+     * @var PointContract
      */
     public $point;
 
@@ -33,10 +32,10 @@ class PointsGiven implements ShouldBroadcast
      * Create a new event instance.
      *
      * @param $user
-     * @param \Miracuthbert\Royalty\Models\Point $point
+     * @param PointContract $point
      * @return void
      */
-    public function __construct($user, Point $point)
+    public function __construct($user, PointContract $point)
     {
         $this->user = $user;
         $this->point = $point;
