@@ -1,5 +1,7 @@
 <?php
 
+namespace Miracuthbert\Royalty\Tests\database\seeds;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;

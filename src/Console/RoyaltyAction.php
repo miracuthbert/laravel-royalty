@@ -6,7 +6,6 @@ use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Miracuthbert\Royalty\Models\Point;
 use Symfony\Component\Console\Input\InputOption;
 
 class RoyaltyAction extends GeneratorCommand
@@ -148,7 +147,7 @@ class RoyaltyAction extends GeneratorCommand
     protected function createPoint()
     {
         if (count($this->canCreatePointInDb()) === 2) {
-            Point::firstOrCreate(['key' => $this->buildActionKey()],
+            config('royalty.point.model')::firstOrCreate(['key' => $this->buildActionKey()],
                 Arr::only($this->options(), ['name', 'points', 'description'])
             );
 

@@ -7,7 +7,6 @@ use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Miracuthbert\Royalty\Models\Point;
 
 class RoyaltyActions extends Command
 {
@@ -58,7 +57,7 @@ class RoyaltyActions extends Command
             app_path(str_replace('\\', DIRECTORY_SEPARATOR, config('royalty.point.actions_path')))
         );
 
-        $points = Point::get(['id', 'name', 'points', 'key'])->map(function ($action) use ($path) {
+        $points = config('royalty.point.model')::get(['id', 'name', 'points', 'key'])->map(function ($action) use ($path) {
             return $this->getActionFile($action, $path);
         });
 

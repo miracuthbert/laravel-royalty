@@ -6,7 +6,6 @@ use Miracuthbert\Royalty\Actions\ActionAbstract;
 use Miracuthbert\Royalty\Events\PointsGiven;
 use Miracuthbert\Royalty\Exceptions\PointModelMissingException;
 use Miracuthbert\Royalty\Formatters\PointsFormatter;
-use Miracuthbert\Royalty\Models\Point;
 
 trait CollectsPoints
 {
@@ -60,7 +59,7 @@ trait CollectsPoints
      */
     public function pointsRelation()
     {
-        return $this->belongsToMany(Point::class)
+        return $this->belongsToMany(config('royalty.point.model'))
             ->withTimestamps();
     }
 }

@@ -5,7 +5,9 @@ namespace Miracuthbert\Royalty\Tests;
 use Eloquent;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Kalnoy\Nestedset\NestedSetServiceProvider;
+use Miracuthbert\Royalty\Models\Point;
 use Miracuthbert\Royalty\RoyaltyServiceProvider;
+use Miracuthbert\Royalty\Tests\database\seeds\PointTableSeeder;
 use Miracuthbert\Royalty\Tests\Models\User;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
@@ -30,7 +32,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
             '--path' => realpath(__DIR__ . '/database/migrations'),
         ]);
 
-        $this->seed('PointTableSeeder');
+        $this->seed(PointTableSeeder::class);
 
         // factories
         $this->withFactories(__DIR__ . '/database/factories');
@@ -74,6 +76,8 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         $app['config']->set('royalty.user.model', User::class);
 
         $app['config']->set('database.default', 'testbench');
+        
+        $app['config']->set('royalty.point.model', Point::class);
 
         // Setup default database to use sqlite :memory:
         $app['config']->set('database.connections.testbench', [

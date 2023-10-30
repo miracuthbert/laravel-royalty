@@ -2,7 +2,6 @@
 
 namespace Miracuthbert\Royalty\Tests\Unit;
 
-use Illuminate\Support\Facades\DB;
 use Miracuthbert\Royalty\Models\Point;
 use Miracuthbert\Royalty\Tests\Models\User;
 use Miracuthbert\Royalty\Tests\Points\Actions\DeleteablePoint;
@@ -72,7 +71,7 @@ class PointTest extends TestCase
 
         $point->getModel()->delete();
 
-        $this->assertDeleted('points', $pointModel);
+        $this->assertNotContains('points', $pointModel);
         $this->assertCount(0, $user->pointsRelation()->where('key', $point->key())->get());
         $this->assertCount(0, Point::where('key', $point->key())->get());
     }
